@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { JungleCurtainOpener } from '@/components/JungleCurtainOpener';
 import { ParallaxHero } from '@/components/ParallaxHero';
 import { CountdownTimer } from '@/components/CountdownTimer';
 import { EventDetails } from '@/components/EventDetails';
@@ -19,13 +20,16 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen bg-[#f6f9fe] text-slate-900 selection:bg-sky-200 selection:text-sky-950 pb-16 md:pb-0">
-      {/* Hero Section with Toile de Jouy Aesthetic & Animals */}
+      {/* Interactive Jungle Opening Reveal Overlay */}
+      <JungleCurtainOpener />
+
+      {/* Hero Section with Realistic Watercolor Jungle & Safari Baby Animals */}
       <ParallaxHero />
 
       {/* Countdown Timer */}
       <CountdownTimer />
 
-      {/* Event Details Grid */}
+      {/* Event Details Grid (Customized, open gifts, no dress code) */}
       <EventDetails />
 
       {/* Location, Interactive Map & Calendar Sync */}

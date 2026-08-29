@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Sparkles, Gift, Shirt } from 'lucide-react';
+import { Calendar, MapPin, Sparkles, Gift, HeartHandshake } from 'lucide-react';
 
 export function EventDetails() {
   const details = [
@@ -10,7 +10,7 @@ export function EventDetails() {
       icon: Calendar,
       title: 'Fecha y Hora',
       highlight: 'Sábado, 26 de Septiembre de 2026',
-      description: 'Recepción a partir de las 3:00 PM',
+      description: 'Recepción y bienvenida a partir de las 3:00 PM.',
       badge: '¡Día Especial!',
       gradient: 'from-sky-500/10 to-blue-500/10',
       border: 'border-sky-200',
@@ -20,28 +20,28 @@ export function EventDetails() {
       icon: MapPin,
       title: 'Ubicación',
       highlight: 'Salón Social 2, Conjunto Navarra',
-      description: 'Carrera 8 # 170-52, Bogotá, Colombia',
-      badge: 'Fácil Acceso y Parqueadero',
+      description: 'Carrera 8 # 170-52, Bogotá, Colombia. Parqueadero de visitantes disponible.',
+      badge: 'Fácil Acceso',
       gradient: 'from-emerald-500/10 to-teal-500/10',
       border: 'border-emerald-200',
       iconColor: 'text-emerald-600',
     },
     {
-      icon: Shirt,
-      title: 'Código de Vestimenta',
-      highlight: 'Tropical Chic / Selva Elegante',
-      description: 'Gama de azules, verdes suaves, arena y detalles dorados.',
-      badge: 'Elegante y Fresco',
+      icon: Gift,
+      title: 'Regalos y Detalles',
+      highlight: 'Elección Libre y Abierta',
+      description: 'Tu presencia es nuestro mayor tesoro. Cualquier detalle que desees traer para la llegada de Santiago es completamente libre y bienvenido con todo nuestro amor.',
+      badge: 'Con Mucho Cariño',
       gradient: 'from-amber-500/10 to-yellow-500/10',
       border: 'border-amber-200',
       iconColor: 'text-amber-600',
     },
     {
-      icon: Gift,
-      title: 'Regalos y Agradecimiento',
-      highlight: 'Lluvia de Sobres',
-      description: 'Tu presencia es nuestro mejor regalo. Si deseas tener un detalle, tendremos cofre de sobres.',
-      badge: 'Con Mucho Amor',
+      icon: HeartHandshake,
+      title: 'Celebración & Sorpresas',
+      highlight: 'Tarde Mágica e Inolvidable',
+      description: 'Tendremos dinámicas, mesa de dulces, momentos especiales y fotografías para recordar.',
+      badge: 'Momentos Felices',
       gradient: 'from-indigo-500/10 to-purple-500/10',
       border: 'border-indigo-200',
       iconColor: 'text-indigo-600',
@@ -63,7 +63,7 @@ export function EventDetails() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100/80 text-emerald-900 text-xs uppercase tracking-widest font-semibold mb-3">
             <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-            <span>Detalles de la Celebración</span>
+            <span>Detalles del Evento</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-slate-900 tracking-tight">
             Todo lo que necesitas saber
