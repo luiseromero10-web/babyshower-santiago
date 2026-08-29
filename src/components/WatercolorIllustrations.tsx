@@ -3,346 +3,276 @@
 import React from 'react';
 
 /**
- * Balloon Garland / Arch with soft 3D spheres, translucency and glossy sheen
+ * Balloon Garland - Elegant corner cluster with gentle sway
  */
-export function ToileBalloonGarland({ className = '', side = 'left' }: { className?: string; side?: 'left' | 'right' }) {
+export function ToileBalloonGarland({ className = 'w-36 h-auto', side = 'left' }: { className?: string; side?: 'left' | 'right' }) {
   return (
     <svg
-      viewBox="0 0 300 500"
+      viewBox="0 0 200 240"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
       className={`${className} ${side === 'left' ? 'animate-balloon-left' : 'animate-balloon-right'}`}
     >
       <defs>
-        {/* Soft Blue Balloon 1 */}
-        <radialGradient id="balloonBlueSoft" cx="35%" cy="30%" r="70%">
+        <radialGradient id={`bgBlueSoft_${side}`} cx="35%" cy="30%" r="70%">
           <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.9" />
-          <stop offset="25%" stopColor="#BAE6FD" />
-          <stop offset="75%" stopColor="#7DD3FC" />
+          <stop offset="30%" stopColor="#BAE6FD" />
+          <stop offset="80%" stopColor="#7DD3FC" />
           <stop offset="100%" stopColor="#38BDF8" />
         </radialGradient>
-        {/* Dusty Sky Blue Balloon */}
-        <radialGradient id="balloonDustyBlue" cx="35%" cy="30%" r="70%">
+        <radialGradient id={`bgDustyBlue_${side}`} cx="35%" cy="30%" r="70%">
           <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.9" />
-          <stop offset="30%" stopColor="#93C5FD" />
-          <stop offset="80%" stopColor="#60A5FA" />
+          <stop offset="35%" stopColor="#93C5FD" />
+          <stop offset="85%" stopColor="#60A5FA" />
           <stop offset="100%" stopColor="#2563EB" />
         </radialGradient>
-        {/* White Pearl Balloon */}
-        <radialGradient id="balloonPearl" cx="35%" cy="30%" r="70%">
+        <radialGradient id={`bgPearl_${side}`} cx="35%" cy="30%" r="70%">
           <stop offset="0%" stopColor="#FFFFFF" />
-          <stop offset="60%" stopColor="#F8FAFC" />
-          <stop offset="85%" stopColor="#E2E8F0" />
+          <stop offset="70%" stopColor="#F1F5F9" />
           <stop offset="100%" stopColor="#CBD5E1" />
         </radialGradient>
-        {/* Translucent Bubble */}
-        <radialGradient id="balloonBubble" cx="35%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
-          <stop offset="40%" stopColor="#E0F2FE" stopOpacity="0.3" />
-          <stop offset="85%" stopColor="#BAE6FD" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="#38BDF8" stopOpacity="0.7" />
+        <radialGradient id={`bgBubble_${side}`} cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
+          <stop offset="50%" stopColor="#E0F2FE" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#7DD3FC" stopOpacity="0.7" />
         </radialGradient>
-        <filter id="balloonShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="2" dy="8" stdDeviation="6" floodColor="#0F172A" floodOpacity="0.12" />
-        </filter>
       </defs>
 
-      <g filter="url(#balloonShadow)">
-        {side === 'left' ? (
-          <>
-            <circle cx="120" cy="80" r="65" fill="url(#balloonBlueSoft)" />
-            <circle cx="70" cy="170" r="55" fill="url(#balloonPearl)" />
-            <circle cx="160" cy="180" r="60" fill="url(#balloonDustyBlue)" />
-            <circle cx="90" cy="270" r="58" fill="url(#balloonBlueSoft)" />
-            <circle cx="180" cy="280" r="48" fill="url(#balloonBubble)" stroke="#BAE6FD" strokeWidth="1.5" />
-            <circle cx="110" cy="370" r="52" fill="url(#balloonPearl)" />
-            <circle cx="170" cy="380" r="45" fill="url(#balloonDustyBlue)" />
-            <circle cx="60" cy="420" r="38" fill="url(#balloonBlueSoft)" />
-            {/* Glossy reflections */}
-            <ellipse cx="105" cy="65" rx="14" ry="7" fill="#FFFFFF" opacity="0.6" transform="rotate(-30 105 65)" />
-            <ellipse cx="55" cy="155" rx="12" ry="6" fill="#FFFFFF" opacity="0.7" transform="rotate(-30 55 155)" />
-            <ellipse cx="145" cy="165" rx="14" ry="7" fill="#FFFFFF" opacity="0.5" transform="rotate(-30 145 165)" />
-            <ellipse cx="75" cy="255" rx="12" ry="6" fill="#FFFFFF" opacity="0.6" transform="rotate(-30 75 255)" />
-          </>
-        ) : (
-          <>
-            <circle cx="180" cy="80" r="65" fill="url(#balloonDustyBlue)" />
-            <circle cx="230" cy="170" r="55" fill="url(#balloonPearl)" />
-            <circle cx="140" cy="180" r="60" fill="url(#balloonBlueSoft)" />
-            <circle cx="210" cy="270" r="58" fill="url(#balloonDustyBlue)" />
-            <circle cx="120" cy="280" r="48" fill="url(#balloonBubble)" stroke="#BAE6FD" strokeWidth="1.5" />
-            <circle cx="190" cy="370" r="52" fill="url(#balloonPearl)" />
-            <circle cx="130" cy="380" r="45" fill="url(#balloonBlueSoft)" />
-            <circle cx="240" cy="420" r="38" fill="url(#balloonDustyBlue)" />
-            {/* Glossy reflections */}
-            <ellipse cx="165" cy="65" rx="14" ry="7" fill="#FFFFFF" opacity="0.6" transform="rotate(-30 165 65)" />
-            <ellipse cx="215" cy="155" rx="12" ry="6" fill="#FFFFFF" opacity="0.7" transform="rotate(-30 215 155)" />
-            <ellipse cx="125" cy="165" rx="14" ry="7" fill="#FFFFFF" opacity="0.5" transform="rotate(-30 125 165)" />
-            <ellipse cx="195" cy="255" rx="12" ry="6" fill="#FFFFFF" opacity="0.6" transform="rotate(-30 195 255)" />
-          </>
-        )}
-      </g>
+      {side === 'left' ? (
+        <g>
+          <circle cx="60" cy="50" r="40" fill={`url(#bgBlueSoft_${side})`} />
+          <circle cx="110" cy="80" r="34" fill={`url(#bgPearl_${side})`} />
+          <circle cx="45" cy="115" r="32" fill={`url(#bgDustyBlue_${side})`} />
+          <circle cx="95" cy="140" r="28" fill={`url(#bgBubble_${side})`} stroke="#BAE6FD" strokeWidth="1" />
+          <circle cx="50" cy="180" r="24" fill={`url(#bgPearl_${side})`} />
+          <circle cx="90" cy="195" r="20" fill={`url(#bgBlueSoft_${side})`} />
+          {/* Highlights */}
+          <ellipse cx="50" cy="40" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.6" transform="rotate(-30 50 40)" />
+          <ellipse cx="100" cy="70" rx="7" ry="3.5" fill="#FFFFFF" opacity="0.7" transform="rotate(-30 100 70)" />
+          <ellipse cx="38" cy="105" rx="7" ry="3.5" fill="#FFFFFF" opacity="0.6" transform="rotate(-30 38 105)" />
+        </g>
+      ) : (
+        <g>
+          <circle cx="140" cy="50" r="40" fill={`url(#bgDustyBlue_${side})`} />
+          <circle cx="90" cy="80" r="34" fill={`url(#bgPearl_${side})`} />
+          <circle cx="155" cy="115" r="32" fill={`url(#bgBlueSoft_${side})`} />
+          <circle cx="105" cy="140" r="28" fill={`url(#bgBubble_${side})`} stroke="#BAE6FD" strokeWidth="1" />
+          <circle cx="150" cy="180" r="24" fill={`url(#bgPearl_${side})`} />
+          <circle cx="110" cy="195" r="20" fill={`url(#bgDustyBlue_${side})`} />
+          {/* Highlights */}
+          <ellipse cx="130" cy="40" rx="9" ry="4.5" fill="#FFFFFF" opacity="0.6" transform="rotate(-30 130 40)" />
+          <ellipse cx="80" cy="70" rx="7" ry="3.5" fill="#FFFFFF" opacity="0.7" transform="rotate(-30 80 70)" />
+          <ellipse cx="145" cy="105" rx="7" ry="3.5" fill="#FFFFFF" opacity="0.6" transform="rotate(-30 145 105)" />
+        </g>
+      )}
     </svg>
   );
 }
 
 /**
- * Elegant Toile de Jouy Baby Giraffe standing tall with blue floral porcelain pattern
+ * Elegant Toile de Jouy Baby Giraffe
  */
-export function ToileGiraffe({ className = 'w-64 h-96' }: { className?: string }) {
+export function ToileGiraffe({ className = 'w-40 sm:w-52 md:w-60 h-auto' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 320 540" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg
+      viewBox="0 0 240 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+      className={className}
+    >
       <defs>
-        <pattern id="toileFloralBlue" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-          {/* Porcelain blue floral etched damask motif */}
-          <path d="M40 10 C35 25 25 35 10 40 C25 45 35 55 40 70 C45 55 55 45 70 40 C55 35 45 25 40 10 Z" fill="#3B82F6" opacity="0.25" />
-          <circle cx="40" cy="40" r="5" fill="#1D4ED8" opacity="0.4" />
-          <path d="M20 20 Q30 30 20 40 Q10 30 20 20 Z" fill="#2563EB" opacity="0.3" />
-          <path d="M60 20 Q50 30 60 40 Q70 30 60 20 Z" fill="#2563EB" opacity="0.3" />
-          <path d="M20 60 Q30 50 20 40 Q10 50 20 60 Z" fill="#2563EB" opacity="0.3" />
-          <path d="M60 60 Q50 50 60 40 Q70 50 60 60 Z" fill="#2563EB" opacity="0.3" />
+        <pattern id="toilePatternGiraffe" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M20 5 Q25 15 35 20 Q25 25 20 35 Q15 25 5 20 Q15 15 20 5 Z" fill="#2563EB" opacity="0.25" />
+          <circle cx="20" cy="20" r="3" fill="#1D4ED8" opacity="0.35" />
         </pattern>
-        <filter id="toileCutoutShadow" x="-10%" y="-5%" width="120%" height="115%">
-          <feDropShadow dx="3" dy="12" stdDeviation="8" floodColor="#0F172A" floodOpacity="0.25" />
+        <filter id="shadowGiraffe" x="-10%" y="-5%" width="120%" height="115%">
+          <feDropShadow dx="2" dy="8" stdDeviation="5" floodColor="#0F172A" floodOpacity="0.18" />
         </filter>
       </defs>
 
-      <g filter="url(#toileCutoutShadow)">
-        {/* Silhouette Base with white outline cutout effect */}
-        <g stroke="#FFFFFF" strokeWidth="8" strokeLinejoin="round">
-          {/* Main Giraffe Body */}
-          <path
-            d="M 120 500 
-               L 125 360 
-               Q 120 330 140 280 
-               L 180 140 
-               Q 185 100 220 85 
-               Q 245 75 260 90 
-               Q 275 105 265 125 
-               Q 250 145 230 150 
-               L 205 260 
-               Q 225 300 230 340 
-               L 245 500 
-               L 230 505 
-               L 215 390 
-               L 190 390 
-               L 175 505 
-               L 155 505 
-               L 165 370 
-               L 140 505 
-               Z"
-            fill="#F8FAFC"
-          />
-        </g>
-
-        {/* Giraffe Body Filled with Porcelain Pattern */}
+      <g filter="url(#shadowGiraffe)">
+        {/* White Base Silhouette Cutout */}
         <path
-          d="M 120 500 
-             L 125 360 
-             Q 120 330 140 280 
-             L 180 140 
-             Q 185 100 220 85 
-             Q 245 75 260 90 
-             Q 275 105 265 125 
-             Q 250 145 230 150 
-             L 205 260 
-             Q 225 300 230 340 
-             L 245 500 
-             L 230 505 
-             L 215 390 
-             L 190 390 
-             L 175 505 
-             L 155 505 
-             L 165 370 
-             L 140 505 
-             Z"
+          d="M 90 380 L 95 270 Q 90 240 105 200 L 135 100 Q 140 70 165 60 Q 185 52 195 65 Q 205 78 198 92 Q 185 105 170 110 L 150 190 Q 165 220 170 250 L 180 380 L 170 382 L 160 290 L 142 290 L 130 382 L 115 382 L 122 280 L 105 382 Z"
+          fill="#FFFFFF"
+          stroke="#FFFFFF"
+          strokeWidth="6"
+          strokeLinejoin="round"
+        />
+
+        {/* Body Base & Color */}
+        <path
+          d="M 90 380 L 95 270 Q 90 240 105 200 L 135 100 Q 140 70 165 60 Q 185 52 195 65 Q 205 78 198 92 Q 185 105 170 110 L 150 190 Q 165 220 170 250 L 180 380 L 170 382 L 160 290 L 142 290 L 130 382 L 115 382 L 122 280 L 105 382 Z"
           fill="#EFF6FF"
           stroke="#1E40AF"
-          strokeWidth="2.5"
+          strokeWidth="2"
         />
 
-        {/* Overlay Toile Floral Etching */}
+        {/* Toile Floral Overlay */}
         <path
-          d="M 120 500 
-             L 125 360 
-             Q 120 330 140 280 
-             L 180 140 
-             Q 185 100 220 85 
-             Q 245 75 260 90 
-             Q 275 105 265 125 
-             Q 250 145 230 150 
-             L 205 260 
-             Q 225 300 230 340 
-             L 245 500 
-             L 230 505 
-             L 215 390 
-             L 190 390 
-             L 175 505 
-             L 155 505 
-             L 165 370 
-             L 140 505 
-             Z"
-          fill="url(#toileFloralBlue)"
+          d="M 90 380 L 95 270 Q 90 240 105 200 L 135 100 Q 140 70 165 60 Q 185 52 195 65 Q 205 78 198 92 Q 185 105 170 110 L 150 190 Q 165 220 170 250 L 180 380 L 170 382 L 160 290 L 142 290 L 130 382 L 115 382 L 122 280 L 105 382 Z"
+          fill="url(#toilePatternGiraffe)"
         />
 
-        {/* Giraffe Mane & Spots in Toile Blue */}
-        {/* Mane */}
+        {/* Giraffe Mane */}
         <path
-          d="M 180 140 Q 170 160 178 180 Q 168 200 176 220 Q 166 240 174 260"
+          d="M 135 100 Q 128 115 133 130 Q 125 145 131 160 Q 123 175 129 190"
           stroke="#1D4ED8"
-          strokeWidth="6"
+          strokeWidth="4.5"
           strokeLinecap="round"
           opacity="0.8"
         />
 
-        {/* Horns / Ossicones */}
-        <line x1="225" y1="85" x2="228" y2="60" stroke="#1E40AF" strokeWidth="4" strokeLinecap="round" />
-        <circle cx="228" cy="58" r="4.5" fill="#1D4ED8" />
-        <line x1="238" y1="83" x2="243" y2="58" stroke="#1E40AF" strokeWidth="4" strokeLinecap="round" />
-        <circle cx="243" cy="56" r="4.5" fill="#1D4ED8" />
+        {/* Horns */}
+        <line x1="170" y1="60" x2="172" y2="42" stroke="#1E40AF" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="172" cy="40" r="3.5" fill="#1D4ED8" />
+        <line x1="180" y1="58" x2="184" y2="40" stroke="#1E40AF" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="184" cy="38" r="3.5" fill="#1D4ED8" />
 
-        {/* Sweet Giraffe Eye & Eyelashes */}
-        <ellipse cx="238" cy="100" rx="6" ry="7" fill="#0F172A" />
-        <circle cx="240" cy="98" r="2.5" fill="#FFFFFF" />
-        <path d="M 233 93 Q 238 89 246 92" stroke="#1E3A8A" strokeWidth="1.5" fill="none" />
+        {/* Sweet Eye */}
+        <ellipse cx="180" cy="72" rx="4.5" ry="5.5" fill="#0F172A" />
+        <circle cx="181.5" cy="70" r="2" fill="#FFFFFF" />
 
-        {/* Ears */}
-        <path d="M 215 88 Q 195 85 200 100 Q 210 102 220 95 Z" fill="#DBEAFE" stroke="#1E40AF" strokeWidth="1.5" />
+        {/* Ear */}
+        <path d="M 162 62 Q 148 58 152 70 Q 160 72 166 66 Z" fill="#DBEAFE" stroke="#1E40AF" strokeWidth="1.5" />
 
-        {/* Soft Toile Botanical Leaves at Feet */}
-        <path d="M 100 505 Q 120 460 160 480 Q 130 500 100 505 Z" fill="#93C5FD" opacity="0.6" />
-        <path d="M 180 505 Q 210 450 260 475 Q 220 495 180 505 Z" fill="#60A5FA" opacity="0.5" />
+        {/* Leaves at feet */}
+        <path d="M 75 382 Q 90 350 120 365 Q 95 380 75 382 Z" fill="#93C5FD" opacity="0.7" />
+        <path d="M 135 382 Q 160 340 195 360 Q 165 378 135 382 Z" fill="#60A5FA" opacity="0.6" />
       </g>
     </svg>
   );
 }
 
 /**
- * Charming Toile de Jouy Baby Leopard Cub sitting with big cute eyes and porcelain blue patterns
+ * Charming Toile de Jouy Baby Leopard Cub
  */
-export function ToileLeopardCub({ className = 'w-64 h-80' }: { className?: string }) {
+export function ToileLeopardCub({ className = 'w-40 sm:w-52 md:w-60 h-auto' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 340 420" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg
+      viewBox="0 0 260 320"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+      className={className}
+    >
       <defs>
-        <pattern id="toileLeopardRosettes" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-          {/* Toile floral rosettes */}
-          <circle cx="30" cy="30" r="7" fill="#3B82F6" opacity="0.3" />
-          <path d="M 22 24 C 20 18 35 15 38 22" stroke="#1D4ED8" strokeWidth="2" fill="none" opacity="0.6" />
-          <path d="M 38 25 C 44 28 42 38 35 40" stroke="#1D4ED8" strokeWidth="2" fill="none" opacity="0.6" />
-          <path d="M 22 36 C 18 32 20 25 24 24" stroke="#1D4ED8" strokeWidth="2" fill="none" opacity="0.6" />
+        <pattern id="toilePatternLeopard" x="0" y="0" width="45" height="45" patternUnits="userSpaceOnUse">
+          <circle cx="22" cy="22" r="5" fill="#3B82F6" opacity="0.35" />
+          <path d="M 15 17 C 14 12 25 10 27 15" stroke="#1D4ED8" strokeWidth="1.5" fill="none" opacity="0.6" />
+          <path d="M 27 17 C 32 20 30 28 25 30" stroke="#1D4ED8" strokeWidth="1.5" fill="none" opacity="0.6" />
+          <path d="M 15 26 C 12 23 14 18 17 17" stroke="#1D4ED8" strokeWidth="1.5" fill="none" opacity="0.6" />
         </pattern>
-        <filter id="cubShadow" x="-10%" y="-5%" width="120%" height="115%">
-          <feDropShadow dx="3" dy="12" stdDeviation="8" floodColor="#0F172A" floodOpacity="0.25" />
+        <filter id="shadowCub" x="-10%" y="-5%" width="120%" height="115%">
+          <feDropShadow dx="2" dy="8" stdDeviation="5" floodColor="#0F172A" floodOpacity="0.18" />
         </filter>
       </defs>
 
-      <g filter="url(#cubShadow)">
-        {/* White Outline Silhouette */}
-        <g stroke="#FFFFFF" strokeWidth="8" strokeLinejoin="round">
-          {/* Main Body */}
-          <ellipse cx="170" cy="270" rx="75" ry="95" fill="#F8FAFC" />
-          {/* Head */}
-          <circle cx="170" cy="140" r="68" fill="#F8FAFC" />
+      <g filter="url(#shadowCub)">
+        {/* White Base Silhouette Cutout */}
+        <g stroke="#FFFFFF" strokeWidth="6" strokeLinejoin="round">
+          <ellipse cx="130" cy="210" rx="58" ry="72" fill="#FFFFFF" />
+          <circle cx="130" cy="110" r="52" fill="#FFFFFF" />
         </g>
 
         {/* Body Base */}
-        <ellipse cx="170" cy="270" rx="75" ry="95" fill="#EFF6FF" stroke="#1E40AF" strokeWidth="2.5" />
-        {/* Tail curler */}
+        <ellipse cx="130" cy="210" rx="58" ry="72" fill="#EFF6FF" stroke="#1E40AF" strokeWidth="2" />
+        {/* Tail */}
         <path
-          d="M 230 310 Q 290 280 280 200 Q 275 170 260 185 Q 260 220 220 260"
+          d="M 175 240 Q 220 220 215 155 Q 210 135 198 145 Q 200 170 168 200"
           fill="#EFF6FF"
           stroke="#1E40AF"
-          strokeWidth="2.5"
-        />
-
-        {/* Paws */}
-        {/* Left Front Leg & Paw */}
-        <path
-          d="M 125 230 L 125 365 Q 125 385 150 385 Q 170 385 165 365 L 160 230 Z"
-          fill="#F8FAFC"
-          stroke="#1E40AF"
-          strokeWidth="2"
-        />
-        {/* Right Front Leg & Paw */}
-        <path
-          d="M 180 230 L 175 365 Q 175 385 200 385 Q 225 385 220 365 L 215 230 Z"
-          fill="#F8FAFC"
-          stroke="#1E40AF"
           strokeWidth="2"
         />
 
-        {/* Overlay Toile Floral Rosettes on Body */}
-        <ellipse cx="170" cy="270" rx="73" ry="93" fill="url(#toileLeopardRosettes)" />
+        {/* Legs & Paws */}
+        <path
+          d="M 95 180 L 95 285 Q 95 300 115 300 Q 130 300 126 285 L 122 180 Z"
+          fill="#FFFFFF"
+          stroke="#1E40AF"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M 138 180 L 134 285 Q 134 300 154 300 Q 172 300 168 285 L 164 180 Z"
+          fill="#FFFFFF"
+          stroke="#1E40AF"
+          strokeWidth="1.5"
+        />
+
+        {/* Toile Rosettes Pattern */}
+        <ellipse cx="130" cy="210" rx="56" ry="70" fill="url(#toilePatternLeopard)" />
 
         {/* Head */}
-        <circle cx="170" cy="140" r="68" fill="#F8FAFC" stroke="#1E40AF" strokeWidth="2.5" />
-        <circle cx="170" cy="140" r="67" fill="url(#toileLeopardRosettes)" />
+        <circle cx="130" cy="110" r="52" fill="#FFFFFF" stroke="#1E40AF" strokeWidth="2" />
+        <circle cx="130" cy="110" r="51" fill="url(#toilePatternLeopard)" />
 
-        {/* Ears with Toile accents */}
-        <path d="M 115 105 Q 100 65 125 70 Q 145 80 135 110 Z" fill="#DBEAFE" stroke="#1E40AF" strokeWidth="2" />
-        <path d="M 120 100 Q 110 75 125 80 Z" fill="#93C5FD" />
-        <path d="M 225 105 Q 240 65 215 70 Q 195 80 205 110 Z" fill="#DBEAFE" stroke="#1E40AF" strokeWidth="2" />
-        <path d="M 220 100 Q 230 75 215 80 Z" fill="#93C5FD" />
+        {/* Ears */}
+        <path d="M 88 85 Q 75 55 95 60 Q 110 68 102 90 Z" fill="#DBEAFE" stroke="#1E40AF" strokeWidth="1.5" />
+        <path d="M 172 85 Q 185 55 165 60 Q 150 68 158 90 Z" fill="#DBEAFE" stroke="#1E40AF" strokeWidth="1.5" />
 
-        {/* Large Sweet Expressive Eyes */}
-        <ellipse cx="138" cy="135" rx="14" ry="17" fill="#0F172A" />
-        <ellipse cx="138" cy="135" rx="11" ry="14" fill="#1E3A8A" />
-        <circle cx="142" cy="130" r="5" fill="#FFFFFF" />
-        <circle cx="134" cy="142" r="2.5" fill="#FFFFFF" />
+        {/* Sweet Eyes */}
+        <ellipse cx="106" cy="106" rx="10" ry="12" fill="#0F172A" />
+        <ellipse cx="106" cy="106" rx="8" ry="10" fill="#1E3A8A" />
+        <circle cx="109" cy="102" r="3.5" fill="#FFFFFF" />
+        <circle cx="103" cy="111" r="1.8" fill="#FFFFFF" />
 
-        <ellipse cx="202" cy="135" rx="14" ry="17" fill="#0F172A" />
-        <ellipse cx="202" cy="135" rx="11" ry="14" fill="#1E3A8A" />
-        <circle cx="206" cy="130" r="5" fill="#FFFFFF" />
-        <circle cx="198" cy="142" r="2.5" fill="#FFFFFF" />
+        <ellipse cx="154" cy="106" rx="10" ry="12" fill="#0F172A" />
+        <ellipse cx="154" cy="106" rx="8" ry="10" fill="#1E3A8A" />
+        <circle cx="157" cy="102" r="3.5" fill="#FFFFFF" />
+        <circle cx="151" cy="111" r="1.8" fill="#FFFFFF" />
 
-        {/* Cute Nose and Whiskers Area */}
-        <path d="M 165 155 L 175 155 L 170 162 Z" fill="#3B82F6" stroke="#1E40AF" strokeWidth="1" />
-        <path d="M 170 162 L 170 170 Q 160 175 155 170 M 170 170 Q 180 175 185 170" stroke="#1E40AF" strokeWidth="2" fill="none" />
+        {/* Nose & Whiskers */}
+        <path d="M 126 122 L 134 122 L 130 128 Z" fill="#3B82F6" stroke="#1E40AF" strokeWidth="1" />
+        <path d="M 130 128 L 130 134 Q 122 138 118 134 M 130 134 Q 138 138 142 134" stroke="#1E40AF" strokeWidth="1.5" fill="none" />
+        <line x1="108" y1="132" x2="80" y2="128" stroke="#60A5FA" strokeWidth="1.2" strokeLinecap="round" />
+        <line x1="108" y1="136" x2="84" y2="140" stroke="#60A5FA" strokeWidth="1.2" strokeLinecap="round" />
+        <line x1="152" y1="132" x2="180" y2="128" stroke="#60A5FA" strokeWidth="1.2" strokeLinecap="round" />
+        <line x1="152" y1="136" x2="176" y2="140" stroke="#60A5FA" strokeWidth="1.2" strokeLinecap="round" />
 
-        {/* Whiskers */}
-        <line x1="140" y1="168" x2="105" y2="162" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round" />
-        <line x1="140" y1="173" x2="110" y2="178" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round" />
-        <line x1="200" y1="168" x2="235" y2="162" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round" />
-        <line x1="200" y1="173" x2="230" y2="178" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round" />
-
-        {/* Surrounding Porcelain Blue Jungle Botanicals */}
-        <path d="M 70 380 Q 90 310 130 340 Q 100 375 70 380 Z" fill="#93C5FD" stroke="#1E40AF" strokeWidth="1.5" opacity="0.8" />
-        <path d="M 230 380 Q 260 320 280 355 Q 250 380 230 380 Z" fill="#60A5FA" stroke="#1E40AF" strokeWidth="1.5" opacity="0.8" />
+        {/* Foliage */}
+        <path d="M 55 295 Q 70 240 100 265 Q 80 290 55 295 Z" fill="#93C5FD" opacity="0.75" />
+        <path d="M 175 295 Q 200 250 215 275 Q 190 295 175 295 Z" fill="#60A5FA" opacity="0.75" />
       </g>
     </svg>
   );
 }
 
 /**
- * Crescent Moon with Clouds and Toile Blue Pattern
+ * Crescent Moon with Clouds
  */
-export function ToileCrescentMoon({ className = 'w-48 h-48' }: { className?: string }) {
+export function ToileCrescentMoon({ className = 'w-28 sm:w-36 h-auto' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <svg
+      viewBox="0 0 200 200"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
+      className={className}
+    >
       <defs>
         <linearGradient id="moonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#FFFFFF" />
           <stop offset="50%" stopColor="#EFF6FF" />
           <stop offset="100%" stopColor="#DBEAFE" />
         </linearGradient>
-        <filter id="moonShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="2" dy="8" stdDeviation="6" floodColor="#0F172A" floodOpacity="0.2" />
+        <filter id="shadowMoon" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="2" dy="6" stdDeviation="5" floodColor="#0F172A" floodOpacity="0.15" />
         </filter>
       </defs>
-      <g filter="url(#moonShadow)">
-        {/* Crescent Moon */}
+      <g filter="url(#shadowMoon)">
         <path
-          d="M 170 30 C 100 30 50 85 50 160 C 50 215 85 250 140 250 C 100 220 90 170 105 120 C 120 70 150 45 170 30 Z"
+          d="M 130 25 C 75 25 35 68 35 125 C 35 170 65 195 110 195 C 78 170 70 132 82 92 C 94 54 116 35 130 25 Z"
           fill="url(#moonGrad)"
           stroke="#1E40AF"
-          strokeWidth="2.5"
+          strokeWidth="2"
         />
-        {/* Cloud at Base */}
         <path
-          d="M 40 220 C 30 220 20 210 25 195 C 30 180 50 175 65 185 C 75 165 110 165 120 185 C 135 180 155 195 150 215 C 150 225 140 235 130 235 L 40 235 Z"
+          d="M 28 170 C 20 170 12 162 16 150 C 20 138 36 135 48 142 C 56 126 84 126 92 142 C 104 138 120 150 116 166 C 116 174 108 182 100 182 L 28 182 Z"
           fill="#FFFFFF"
           stroke="#93C5FD"
-          strokeWidth="2"
+          strokeWidth="1.5"
         />
       </g>
     </svg>
@@ -350,27 +280,23 @@ export function ToileCrescentMoon({ className = 'w-48 h-48' }: { className?: str
 }
 
 /**
- * Royal French Ribbon Bow and Crest Frame ("Baby Santiago")
+ * Royal French Ribbon Bow and Crest Frame
  */
 export function ToileRoyalCrest({ title = 'Baby', name = 'Santiago', className = '' }: { title?: string; name?: string; className?: string }) {
   return (
-    <div className={`relative flex flex-col items-center justify-center p-6 md:p-8 ${className}`}>
-      {/* Decorative French Shield Border */}
-      <div className="relative bg-white/95 backdrop-blur-md rounded-[2.5rem] border-2 border-sky-300 shadow-xl px-8 py-6 text-center max-w-sm w-full">
-        {/* Ribbon Bow on Top */}
-        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-          <svg width="80" height="40" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div className={`relative flex flex-col items-center justify-center p-3 ${className}`}>
+      <div className="relative bg-white/95 backdrop-blur-md rounded-[2rem] border-2 border-sky-300 shadow-lg px-6 py-4 text-center max-w-[240px] w-full">
+        <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+          <svg width="60" height="28" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M 50 20 Q 30 5 15 25 Q 35 30 50 25 Q 65 30 85 25 Q 70 5 50 20 Z" fill="#60A5FA" stroke="#1E40AF" strokeWidth="2" />
-            <circle cx="50" cy="22" r="6" fill="#2563EB" />
-            <path d="M 45 26 Q 35 45 25 45 M 55 26 Q 65 45 75 45" stroke="#1E40AF" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="50" cy="22" r="5" fill="#2563EB" />
+            <path d="M 45 26 Q 35 45 25 45 M 55 26 Q 65 45 75 45" stroke="#1E40AF" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         </div>
-
-        {/* Text Content */}
-        <span className="block text-xs uppercase tracking-[0.25em] font-serif text-sky-800 font-bold mt-2">
+        <span className="block text-[10px] uppercase tracking-[0.2em] font-serif text-sky-800 font-bold mt-1">
           {title}
         </span>
-        <h2 className="text-3xl sm:text-4xl font-script text-sky-900 tracking-wide mt-0.5">
+        <h2 className="text-2xl font-script text-sky-900 tracking-wide">
           {name}
         </h2>
       </div>
@@ -379,15 +305,14 @@ export function ToileRoyalCrest({ title = 'Baby', name = 'Santiago', className =
 }
 
 /**
- * Floating Sparkles in blue and gold
+ * Floating Sparkles
  */
 export function FloatingSparkles() {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div className="absolute top-1/4 left-1/6 w-2.5 h-2.5 rounded-full bg-sky-300 opacity-70 animate-ping" />
-      <div className="absolute top-1/3 right-1/5 w-3 h-3 rounded-full bg-amber-300 opacity-60 animate-pulse" />
+      <div className="absolute top-1/4 left-1/6 w-2 h-2 rounded-full bg-sky-300 opacity-70 animate-ping" />
+      <div className="absolute top-1/3 right-1/5 w-2.5 h-2.5 rounded-full bg-amber-300 opacity-60 animate-pulse" />
       <div className="absolute bottom-1/3 left-1/4 w-2 h-2 rounded-full bg-blue-400 opacity-60 animate-bounce" />
-      <div className="absolute top-2/3 right-1/3 w-3 h-3 rounded-full bg-sky-200 opacity-75 animate-ping" />
     </div>
   );
 }
