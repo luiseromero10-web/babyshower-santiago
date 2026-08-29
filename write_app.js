@@ -1,0 +1,1 @@
+﻿const fs = require(" fs\); const path = require(\path\); function w(p, c) { fs.mkdirSync(path.dirname(p), { recursive: true }); fs.writeFileSync(p, c.trim() + \\n\, \utf8\); console.log(\Saved:\, p); } module.exports = { w };

@@ -1,0 +1,1 @@
+﻿import os\ndef write(p, c):\n  os.makedirs(os.path.dirname(os.path.abspath(p)), exist_ok=True)\n  open(p, 'w', encoding='utf-8').write(c.strip() + '\n')\n  print('Wrote:', p)\n
