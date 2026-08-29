@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "babyshower-app",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "babyshower-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["preview-server.js"],
+      "port": 4321
+    }
+  ]
+}

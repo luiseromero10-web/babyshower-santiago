@@ -1,152 +1,128 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
-import Image from 'next/image';
-import { Sparkles } from 'lucide-react';
+import { BalloonGarland } from '@/components/toile/BalloonGarland';
 
 interface JungleCurtainOpenerProps {
   onOpen?: () => void;
 }
 
+function porcelainConfetti() {
+  try {
+    confetti({
+      particleCount: 110,
+      spread: 90,
+      origin: { y: 0.5 },
+      scalar: 0.9,
+      colors: ['#FFFFFF', '#DCE9F5', '#BDD4E7', '#A2C0DC', '#6F9AC6', '#D6C1A0'],
+    });
+  } catch {
+    // Ignore if confetti is blocked
+  }
+}
+
 export function JungleCurtainOpener({ onOpen }: JungleCurtainOpenerProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
-    // Check if user has already opened the invitation in this session
-    const hasOpened = sessionStorage.getItem('invitation_opened');
-    if (hasOpened === 'true') {
-      setIsOpen(true);
+    const hasOpened = sessionStorage.getItem('invitation_opened') === 'true';
+    if (hasOpened) {
+      setOpen(true);
+      onOpen?.();
+    } else {
+      document.body.classList.add('locked');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleOpen = () => {
-    try {
-      confetti({
-        particleCount: 80,
-        spread: 90,
-        origin: { y: 0.5 },
-        colors: ['#38BDF8', '#F59E0B', '#10B981', '#3B82F6', '#FEF3C7'],
-      });
-    } catch {
-      // Ignore if confetti is blocked
-    }
-
-    setIsOpen(true);
-    if (typeof window !== 'undefined') {
-      sessionStorage.setItem('invitation_opened', 'true');
-    }
-    if (onOpen) onOpen();
+    setOpen(true);
+    document.body.classList.remove('locked');
+    sessionStorage.setItem('invitation_opened', 'true');
+    setTimeout(porcelainConfetti, 480);
+    onOpen?.();
   };
 
   if (!isMounted) return null;
 
   return (
-    <AnimatePresence>
-      {!isOpen && (
-        <motion.div
-          key="jungle-curtain-overlay"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.8, delay: 0.4 } }}
-          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-slate-950/80 backdrop-blur-md"
-        >
-          {/* Left Jungle Curtain Leaf Panel */}
-          <motion.div
-            initial={{ x: 0 }}
-            exit={{ x: '-105%', transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] } }}
-            className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#0a192f] via-[#0f2847] to-[#133e5c] border-r-2 border-amber-400/40 shadow-2xl flex items-center justify-end overflow-hidden"
-          >
-            {/* Foliage Artwork Backdrop */}
-            <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none scale-125">
-              <Image
-                src="/images/jungle-foliage-frame.jpg"
-                alt="Jungle Foliage"
-                fill
-                className="object-cover object-left"
-                priority
-              />
-            </div>
-            {/* Decorative Gold Leaf Silhouette */}
-            <div className="relative z-10 pr-4 opacity-75">
-              <svg width="80" height="200" viewBox="0 0 100 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M90 20 Q30 70 80 120 Q20 170 70 230" stroke="#F59E0B" strokeWidth="2.5" strokeLinecap="round" />
-                <circle cx="80" cy="120" r="4" fill="#FDE68A" />
-              </svg>
-            </div>
-          </motion.div>
+    <div id="gate" className={open ? 'open' : ''}>
+      <div className="leaf l" />
+      <div className="leaf r" />
 
-          {/* Right Jungle Curtain Leaf Panel */}
-          <motion.div
-            initial={{ x: 0 }}
-            exit={{ x: '105%', transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] } }}
-            className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-[#0a192f] via-[#0f2847] to-[#133e5c] border-l-2 border-amber-400/40 shadow-2xl flex items-center justify-start overflow-hidden"
-          >
-            {/* Foliage Artwork Backdrop */}
-            <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none scale-125">
-              <Image
-                src="/images/jungle-foliage-frame.jpg"
-                alt="Jungle Foliage"
-                fill
-                className="object-cover object-right"
-                priority
-              />
-            </div>
-            {/* Decorative Gold Leaf Silhouette */}
-            <div className="relative z-10 pl-4 opacity-75">
-              <svg width="80" height="200" viewBox="0 0 100 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 20 Q70 70 20 120 Q80 170 30 230" stroke="#F59E0B" strokeWidth="2.5" strokeLinecap="round" />
-                <circle cx="20" cy="120" r="4" fill="#FDE68A" />
-              </svg>
-            </div>
-          </motion.div>
+      <div className="gate-arch" />
 
-          {/* Center Golden Wax Seal & Call to Action */}
-          <motion.div
-            initial={{ scale: 0.85, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 0.1 } }}
-            exit={{ scale: 1.25, opacity: 0, transition: { duration: 0.5 } }}
-            className="relative z-30 flex flex-col items-center justify-center p-6 text-center max-w-sm mx-auto"
-          >
-            {/* Golden Wax Seal Stamp */}
-            <div className="relative w-44 h-44 sm:w-52 sm:h-52 mb-5 drop-shadow-[0_0_35px_rgba(245,158,11,0.5)]">
-              <Image
-                src="/images/golden-jungle-seal.jpg"
-                alt="Sello Dorado Baby Santiago"
-                fill
-                className="object-contain rounded-full animate-float-slow"
-                priority
-              />
-            </div>
+      <BalloonGarland />
 
-            {/* Title & Invitation Header */}
-            <div className="space-y-1.5 mb-6">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/20 border border-amber-300/40 text-amber-200 text-[11px] uppercase tracking-widest font-semibold backdrop-blur-sm">
-                <Sparkles className="w-3 h-3 text-amber-400 animate-spin-slow" />
-                <span>Invitación Especial</span>
-                <Sparkles className="w-3 h-3 text-amber-400 animate-spin-slow" />
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-serif font-black text-white tracking-tight drop-shadow-md">
-                Baby Santiago
-              </h2>
-              <p className="text-xs sm:text-sm text-sky-200/90 font-light font-sans">
-                Angie &amp; Luis te invitan a celebrar
-              </p>
-            </div>
+      {/* Follaje inferior */}
+      <svg className="gate-flora a" viewBox="0 0 460 340" aria-hidden="true">
+        <g className="sway" style={{ animationDelay: '-1.2s' }}><use href="#s-palm" x={8} y={35} width={122} height={305} /></g>
+        <g className="sway" style={{ animationDelay: '-3.4s' }}><use href="#s-monstera" x={108} y={112} width={196} height={233} /></g>
+        <g className="sway" style={{ animationDelay: '-5.1s' }}><use href="#s-fern" x={268} y={78} width={92} height={266} /></g>
+      </svg>
+      <svg className="gate-flora b" viewBox="0 0 460 340" aria-hidden="true">
+        <g transform="translate(460,0) scale(-1,1)">
+          <g className="sway" style={{ animationDelay: '-2.3s' }}><use href="#s-palm" x={12} y={50} width={116} height={290} /></g>
+          <g className="sway" style={{ animationDelay: '-4.7s' }}><use href="#s-monstera" x={104} y={128} width={180} height={214} /></g>
+          <g className="sway" style={{ animationDelay: '-6.2s' }}><use href="#s-fern" x={262} y={92} width={88} height={254} /></g>
+        </g>
+      </svg>
 
-            {/* Glowing Golden "Abrir Invitación" Button */}
-            <button
-              onClick={handleOpen}
-              className="group relative px-8 py-3.5 rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-bold shadow-[0_0_25px_rgba(245,158,11,0.6)] hover:shadow-[0_0_35px_rgba(245,158,11,0.9)] transform hover:scale-105 active:scale-95 transition-all text-xs sm:text-sm uppercase tracking-widest flex items-center gap-2 cursor-pointer"
-            >
-              <span>Abrir Invitación</span>
-              <Sparkles className="w-4 h-4 text-slate-900 group-hover:rotate-45 transition-transform" />
-            </button>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+      <svg className="gate-animal giraffe" viewBox="0 0 170 400" aria-hidden="true"><use href="#s-giraffe" width={170} height={400} /></svg>
+      <svg className="gate-animal leopard" viewBox="0 0 230 260" aria-hidden="true"><use href="#s-leopard" width={230} height={260} /></svg>
+
+      <div className="gate-core">
+        <div className="crest">
+          <svg viewBox="0 0 340 322" style={{ overflow: 'visible' }} aria-hidden="true">
+            <path
+              d="M24 296
+                 C24 250 24 172 24 146
+                 C24 74 89 24 170 24
+                 C251 24 316 74 316 146
+                 C316 172 316 250 316 296
+                 C282 308 254 296 224 301
+                 C200 305 186 296 170 296
+                 C154 296 140 305 116 301
+                 C86 296 58 308 24 296 Z"
+              fill="#FFFFFF" stroke="#3A6BA5" strokeWidth="2.2" strokeLinejoin="round"
+            />
+            <path
+              d="M38 286
+                 C38 248 38 172 38 147
+                 C38 84 97 38 170 38
+                 C243 38 302 84 302 147
+                 C302 172 302 248 302 286
+                 C272 296 248 286 222 290
+                 C200 294 184 286 170 286
+                 C156 286 140 294 118 290
+                 C92 286 68 296 38 286 Z"
+              fill="none" stroke="#BDD4E7" strokeWidth="1.3"
+            />
+            <g className="bow"><use href="#s-bow" x={84} y={-30} width={172} height={103} /></g>
+          </svg>
+          <div className="crest-text">
+            <div className="crest-kicker">Baby Shower</div>
+            <div className="crest-name">Santiago</div>
+            <div className="crest-sub">Angie &amp; Luis</div>
+            <svg className="crest-sprig" viewBox="0 0 120 26" aria-hidden="true">
+              <g fill="none" stroke="#A2C0DC" strokeWidth="1.2" strokeLinecap="round">
+                <path d="M12 13 H46 M74 13 H108" />
+                <path d="M60 6 C55 10 55 16 60 20 C65 16 65 10 60 6 Z" />
+                <path d="M52 13 C55 10 57 9 58 9 M68 13 C65 10 63 9 62 9" />
+              </g>
+            </svg>
+            <div className="crest-date">26 · Sep · 2026</div>
+          </div>
+        </div>
+
+        <button className="open-btn" onClick={handleOpen} type="button">
+          Abrir la invitación
+        </button>
+        <div className="gate-hint">Toca para entrar a la selva</div>
+      </div>
+    </div>
   );
 }

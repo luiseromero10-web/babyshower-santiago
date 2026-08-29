@@ -1,23 +1,27 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Plus_Jakarta_Sans, Great_Vibes } from 'next/font/google';
+import { Cormorant_Garamond, Jost, Pinyon_Script } from 'next/font/google';
 import './globals.css';
+import { ToileDefs } from '@/components/toile/ToileDefs';
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  variable: '--font-playfair',
+  weight: ['300', '400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-display',
   display: 'swap',
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const jost = Jost({
   subsets: ['latin'],
-  variable: '--font-jakarta',
+  weight: ['300', '400', '500'],
+  variable: '--font-ui',
   display: 'swap',
 });
 
-const greatVibes = Great_Vibes({
+const pinyon = Pinyon_Script({
   weight: '400',
   subsets: ['latin'],
-  variable: '--font-great-vibes',
+  variable: '--font-script',
   display: 'swap',
 });
 
@@ -41,9 +45,11 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${playfair.variable} ${jakarta.variable} ${greatVibes.variable} scroll-smooth`}
+      className={`${cormorant.variable} ${jost.variable} ${pinyon.variable} scroll-smooth`}
     >
-      <body className="font-sans antialiased text-slate-900 bg-[#f8fafc] selection:bg-sky-200">
+      <body className="font-sans antialiased text-toile-navy bg-toile-porcelain selection:bg-toile-powder">
+        <div className="grain" aria-hidden="true" />
+        <ToileDefs />
         {children}
       </body>
     </html>
