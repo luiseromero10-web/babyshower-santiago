@@ -6,8 +6,12 @@ import {
   EstadisticasLogistica,
 } from '@/types/database';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+// Placeholders keep createClient() from throwing at build time when the env
+// vars aren't set yet (e.g. a fresh Vercel project before they're configured
+// in Settings → Environment Variables). Requests just fail gracefully at
+// runtime instead of crashing the prerender step.
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   db: {
