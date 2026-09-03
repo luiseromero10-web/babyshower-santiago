@@ -489,13 +489,13 @@ export function RsvpSection() {
 
                       <div>
                         <label className="block text-[10px] uppercase tracking-[.3em] font-medium text-toile-navySoft mb-2 pl-[.3em]">
-                          Restricciones alimentarias / alergias u observaciones
+                          Observaciones
                         </label>
                         <textarea
                           rows={3}
                           value={notes}
                           onChange={(e) => setNotes(e.target.value)}
-                          placeholder="¿Tienes alguna alergia, dieta especial o mensaje para los papás?"
+                          placeholder="¿Algún mensaje para los papás?"
                           className="w-full p-4 rounded-2xl bg-toile-porcelain2 border border-toile-powder focus:border-toile-ink focus:ring-4 focus:ring-toile-mist outline-none text-toile-navy text-sm placeholder:text-toile-sky/70 transition-all"
                         />
                       </div>

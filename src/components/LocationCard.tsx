@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Navigation, CalendarPlus, Check, Copy } from 'lucide-react';
+import { MapPin, CalendarPlus, Check, Copy } from 'lucide-react';
 
 export function LocationCard() {
   const [copied, setCopied] = useState(false);
@@ -14,9 +14,6 @@ export function LocationCard() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
-
-  const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=Carrera+8+%23+170-52+Bogota';
-  const wazeUrl = 'https://www.waze.com/ul?q=Carrera+8+%23+170-52+Bogota&navigate=yes';
 
   const gCalTitle = encodeURIComponent('Baby Shower de Santiago (Angie & Luis)');
   const gCalDetails = encodeURIComponent('¡Acompáñanos a celebrar la dulce espera de Santiago! Salón Social 2, Conjunto Navarra.');
@@ -79,30 +76,10 @@ export function LocationCard() {
 
           <div className="space-y-3 pt-6 border-t border-toile-mist">
             <p className="text-[9px] uppercase tracking-[.3em] text-toile-sky font-semibold pl-[.3em]">
-              Navegación y recordatorio
+              Recordatorio
             </p>
-            <div className="grid grid-cols-2 gap-2">
-              <a
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-toile-ink hover:bg-toile-inkDeep text-[11px] font-medium text-white transition-colors text-center"
-              >
-                <Navigation className="w-3.5 h-3.5" />
-                <span>Google Maps</span>
-              </a>
-              <a
-                href={wazeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-toile-inkDeep hover:bg-toile-navy text-[11px] font-medium text-white transition-colors text-center"
-              >
-                <Navigation className="w-3.5 h-3.5" />
-                <span>Waze</span>
-              </a>
-            </div>
 
-            <div className="pt-1">
+            <div>
               <a
                 href={googleCalendarUrl}
                 target="_blank"

@@ -17,7 +17,7 @@ const details = [
   {
     icon: 'ic-gift',
     title: 'Regalos',
-    lines: ['Sin lista ni obligaciones. Trae el detalle que nazca de tu cariño.'],
+    lines: ['El detalle que nazca de tu cariño y, si gustas, puedes incluir pañales.'],
   },
 ];
 

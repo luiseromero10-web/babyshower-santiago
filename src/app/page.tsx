@@ -8,8 +8,7 @@ import { EventDetails } from '@/components/EventDetails';
 import { LocationCard } from '@/components/LocationCard';
 import { RsvpSection } from '@/components/RsvpSection';
 import { JungleBackdrop } from '@/components/toile/JungleBackdrop';
-import { Heart, ShieldCheck, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
-import Link from 'next/link';
+import { Heart, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
 
 export default function HomePage() {
   const [revealed, setRevealed] = useState(false);
@@ -65,15 +64,6 @@ export default function HomePage() {
         <p className="text-toile-sky text-[11px]">
           Sábado, 26 de Septiembre de 2026 • Salón Social 2, Conjunto Navarra, Bogotá
         </p>
-        <div className="pt-2">
-          <Link
-            href="/admin"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white hover:bg-toile-mist text-toile-navySoft hover:text-toile-navy text-[11px] transition-colors border border-toile-powder"
-          >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Acceso organizadores</span>
-          </Link>
-        </div>
       </footer>
 
       <nav className="quickbar">
